@@ -17,6 +17,10 @@ namespace Simulation_Form
     {
         private Button btn_Main;
         private Button btn_Play;
+
+        private Button btn_A;
+        private Button btn_B;
+
         private Label lbl_User;
         private TextBox txt_Name;
 
@@ -221,6 +225,7 @@ namespace Simulation_Form
             }
             else
             {
+                /*
                 playSubwaySound();
 
                 btn_Start.Hide();
@@ -231,6 +236,9 @@ namespace Simulation_Form
                 Picbox_SchoolImage.Hide();
                 this.ClientSize = new System.Drawing.Size(800, 600);
                 Picbox_Background.Image = Properties.Resources.Setting;
+                */
+
+                Game_Intro();
             }
         }
 
@@ -263,6 +271,61 @@ namespace Simulation_Form
             btn_Start.FlatAppearance.BorderSize = 5;
             startCreate = true;
 
+        }
+
+        // =======================GAME BEGINS======================
+        private void Game_Intro()
+        {
+            playSubwaySound();
+
+            btn_Start.Hide();
+            lbl_User.Hide();
+            txt_Name.Hide();
+            btn_Play.Hide();
+            lbl_Gamename.Hide();
+            Picbox_SchoolImage.Hide();
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            Picbox_Background.Image = Properties.Resources.Setting;
+
+            Controller();
+        }
+
+        // Creates button A and B
+        private void Controller()
+        {
+            btn_A = new Button();
+            btn_A.Location = new System.Drawing.Point(700, 500);
+            btn_A.Name = "btn_Main";
+            btn_A.Size = new System.Drawing.Size(100, 50);
+            btn_A.Text = "A";
+            this.Controls.Add(btn_A);
+            btn_A.BackColor = System.Drawing.Color.Transparent;
+            btn_A.Parent = Picbox_Background;
+            btn_A.FlatStyle = FlatStyle.Flat;
+            btn_A.FlatAppearance.BorderSize = 1;
+            btn_A.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
+            btn_A.ForeColor = System.Drawing.Color.SkyBlue;
+            btn_A.BringToFront();
+            btn_A.Click += new System.EventHandler(this.btn_Play_Click);
+            btn_A.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
+            btn_A.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
+
+            btn_B = new Button();
+            btn_B.Location = new System.Drawing.Point(550, 500);
+            btn_B.Name = "btn_Main";
+            btn_B.Size = new System.Drawing.Size(100, 50);
+            btn_B.Text = "B";
+            this.Controls.Add(btn_B);
+            btn_B.BackColor = System.Drawing.Color.Transparent;
+            btn_B.Parent = Picbox_Background;
+            btn_B.FlatStyle = FlatStyle.Flat;
+            btn_B.FlatAppearance.BorderSize = 1;
+            btn_B.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
+            btn_B.ForeColor = System.Drawing.Color.SkyBlue;
+            btn_B.BringToFront();
+            btn_B.Click += new System.EventHandler(this.btn_Play_Click);
+            btn_B.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
+            btn_B.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
         }
 
     }
