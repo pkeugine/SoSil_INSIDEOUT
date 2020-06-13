@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO; // 파일 입출력
 using System.Media; // 소리 재생
 using System.Collections.Generic;
@@ -15,6 +15,29 @@ namespace Simulation_Form
 {
     public partial class Form1 : Form
     {
+        enum GameState
+        {
+            Main_Game,
+            Prolog_Game,
+            Play_Game,
+            In_Game1, // 광운대역
+            Mini_Game1,
+            In_Game2, // 새빛관
+            Mini_Game2,
+            In_Game3, // 참빛관
+            Mini_Game3,
+            In_Game4_1, // 도서관
+            MIni_Game4_1,
+            In_Game4_2, // 식당
+            Mini_Game4_2,
+            In_Game4_3, // CDP 특강
+            Mini_Game4_3,
+            In_Game5, // 비마관
+            Mini_Game5,
+            In_Game6, // 개강 총회
+            Mini_Game6,
+            End_Game // 게임 종료
+        };
         private Button btn_Main;
         private Button btn_Play;
 
@@ -25,7 +48,7 @@ namespace Simulation_Form
         private TextBox txt_Name;
 
         bool startCreate = false;
-
+        GameState game_mode;
 
 
         public Form1()
@@ -36,7 +59,7 @@ namespace Simulation_Form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+
             lbl_Gamename.Parent = Picbox_Background;
             lbl_Gamename.BackColor = Color.Transparent;
             lbl_Gamename.BringToFront();
@@ -49,6 +72,8 @@ namespace Simulation_Form
             btn_Start.FlatStyle = FlatStyle.Flat;
             btn_Prolog.FlatStyle = FlatStyle.Flat;
             btn_Exit.FlatStyle = FlatStyle.Flat;
+
+            game_mode = GameState.Main_Game;
         }
 
         /* 초기 화면 설정 */
@@ -74,12 +99,13 @@ namespace Simulation_Form
         /* 프롤로그 */
         private void btn_Prolog_Click(object sender, EventArgs e)
         {
+            game_mode = GameState.Prolog_Game;
             btn_Start.Hide();
             btn_Prolog.Hide();
             btn_Exit.Hide();
             lbl_Gamename.Hide();
             Picbox_SchoolImage.Hide();
-            Picbox_Background.Image = Properties.Resources.Prolog; 
+            Picbox_Background.Image = Properties.Resources.Prolog;
 
             if (btn_Main == null)
             {
@@ -126,13 +152,14 @@ namespace Simulation_Form
         }
         private void btn_Main_Click(object sender, EventArgs e)
         {
+            game_mode = GameState.Main_Game;
             btn_Main.Visible = false;
             btn_Start.Show();
             btn_Prolog.Show();
             btn_Exit.Show();
             lbl_Gamename.Show();
             Picbox_SchoolImage.Show();
-            Picbox_Background.Image = Properties.Resources.Background;        
+            Picbox_Background.Image = Properties.Resources.Background;
         }
 
 
@@ -162,6 +189,7 @@ namespace Simulation_Form
         /* 게임 시작 - 사용자로부터 이름 입력받기 */
         private void btn_Start_Click(object sender, EventArgs e)
         {
+            game_mode = GameState.Play_Game;
             MoveButton();
             btn_Prolog.Hide();
             btn_Exit.Hide();
@@ -202,7 +230,7 @@ namespace Simulation_Form
                 btn_Play.Click += new System.EventHandler(this.btn_Play_Click);
                 btn_Play.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
                 btn_Play.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
-            }           
+            }
 
         }
 
@@ -227,7 +255,6 @@ namespace Simulation_Form
             {
                 /*
                 playSubwaySound();
-
                 btn_Start.Hide();
                 lbl_User.Hide();
                 txt_Name.Hide();
@@ -276,6 +303,7 @@ namespace Simulation_Form
         // =======================GAME BEGINS======================
         private void Game_Intro()
         {
+            game_mode = GameState.In_Game1;
             playSubwaySound();
 
             btn_Start.Hide();
