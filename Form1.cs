@@ -83,6 +83,7 @@ namespace Simulation_Form
         /* 종료 */
         private void btn_Exit_Click(object sender, EventArgs e)
         {
+            game_mode = GameState.End_Game;
             this.Close();
         }
 
