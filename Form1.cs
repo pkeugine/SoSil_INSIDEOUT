@@ -20,20 +20,28 @@ namespace Simulation_Form
             Main_Game,
             Prolog_Game,
             Play_Game,
+            Pre_Game1,
             In_Game1, // 광운대역
             Mini_Game1,
+            Pre_Game2,
             In_Game2, // 새빛관
             Mini_Game2,
+            Pre_Game3,
             In_Game3, // 참빛관
             Mini_Game3,
+            Pre_Game4_1,
             In_Game4_1, // 도서관
             MIni_Game4_1,
+            Pre_Game4_2,
             In_Game4_2, // 식당
             Mini_Game4_2,
+            Pre_Game4_3,
             In_Game4_3, // CDP 특강
             Mini_Game4_3,
+            Pre_Game5,
             In_Game5, // 비마관
             Mini_Game5,
+            Pre_Game6,
             In_Game6, // 개강 총회
             Mini_Game6,
             End_Game // 게임 종료
@@ -41,14 +49,23 @@ namespace Simulation_Form
         private Button btn_Main;
         private Button btn_Play;
 
-        private Button btn_A;
-        private Button btn_B;
+        private Button btn_before;
+        private Button btn_next;
 
         private Label lbl_User;
         private TextBox txt_Name;
 
+        private Label lbl_Text;
+        private Label lbl_Dialog;
+
+        private PictureBox Picbox_Character; // 캐릭터 표시 Picturebox
+        private string[] text_Value; // 시나리오 전체 Text
+        private int text_read; // 시나리오 현재 line
+        private int text_line; // 시나리오 전체 line
         bool startCreate = false;
-        GameState game_mode;
+
+        private SoundPlayer wp; // Sound 도입
+        GameState game_mode = GameState.Main_Game; // GameState 이용한 EventHandler Recycle
 
 
         public Form1()
@@ -64,6 +81,7 @@ namespace Simulation_Form
             lbl_Gamename.BackColor = Color.Transparent;
             lbl_Gamename.BringToFront();
 
+            //Picbox_SchoolImage.Image = Properties.Resources.NPC2;
             Picbox_SchoolImage.Parent = Picbox_Background;
             btn_Start.Parent = Picbox_Background;
             btn_Prolog.Parent = Picbox_Background;
@@ -74,13 +92,13 @@ namespace Simulation_Form
             btn_Exit.FlatStyle = FlatStyle.Flat;
 
             game_mode = GameState.Main_Game;
+
+            text_Value = System.IO.File.ReadAllLines(@"..\..\시나리오.txt");
+            text_line = text_Value.Length;
+            text_read = 0;
         }
 
-        /* 초기 화면 설정 */
-
-        /* 버튼 컨트롤에 대한 마우스 On,Over,Click Event */
-
-        /* 종료 */
+        // =======================INIT======================
         private void btn_Exit_Click(object sender, EventArgs e)
         {
             game_mode = GameState.End_Game;
@@ -97,7 +115,7 @@ namespace Simulation_Form
             btn_Exit.FlatAppearance.BorderSize = 1;
             btn_Exit.BackColor = Color.Transparent;
         }
-        /* 프롤로그 */
+        // =======================PROLOG======================
         private void btn_Prolog_Click(object sender, EventArgs e)
         {
             game_mode = GameState.Prolog_Game;
@@ -110,7 +128,7 @@ namespace Simulation_Form
 
             if (btn_Main == null)
             {
-                /* 뒤로가기 버튼 동적으로 생성 */
+
                 btn_Main = new Button();
                 btn_Main.BackColor = System.Drawing.Color.Transparent;
                 btn_Main.Parent = Picbox_Background;
@@ -131,7 +149,7 @@ namespace Simulation_Form
                 btn_Main.Visible = true;
             }
 
-            /* 뒤로가기 버튼으로 마우스 커서 위치 변경 */
+
             int locX = btn_Main.Location.X;
             int locY = btn_Main.Location.Y;
             int dX = (btn_Main.Width / 2) + locX;
@@ -141,7 +159,7 @@ namespace Simulation_Form
             Cursor.Position = this.PointToScreen(Mouse);
         }
 
-        /* 동적으로 생성된 뒤로가기 버튼 */
+
         private void btn_Main_MouseLeave(object sender, EventArgs e)
         {
             btn_Main.FlatAppearance.BorderSize = 1;
@@ -175,7 +193,8 @@ namespace Simulation_Form
             btn_Prolog.BackColor = Color.Transparent;
         }
 
-        /* 게임 시작 */
+        // =======================GAME SETTING======================
+
         private void btn_Start_MouseMove(object sender, MouseEventArgs e)
         {
             btn_Start.FlatAppearance.BorderSize = 3;
@@ -187,7 +206,7 @@ namespace Simulation_Form
             btn_Start.BackColor = Color.Transparent;
         }
 
-        /* 게임 시작 - 사용자로부터 이름 입력받기 */
+
         private void btn_Start_Click(object sender, EventArgs e)
         {
             game_mode = GameState.Play_Game;
@@ -231,6 +250,14 @@ namespace Simulation_Form
                 btn_Play.Click += new System.EventHandler(this.btn_Play_Click);
                 btn_Play.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
                 btn_Play.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
+
+                int locX = btn_Play.Location.X;
+                int locY = btn_Play.Location.Y;
+                int dX = (btn_Play.Width / 2) + locX;
+                int dY = (btn_Play.Height / 2) + locY;
+
+                Point Mouse = new Point(dX, dY);
+                Cursor.Position = this.PointToScreen(Mouse);
             }
 
         }
@@ -250,30 +277,20 @@ namespace Simulation_Form
             if (txt_Name.Text == "")
             {
                 MessageBox.Show("이름을 입력하세요");
+                txt_Name.Focus();
                 return;
             }
             else
             {
-                /*
-                playSubwaySound();
-                btn_Start.Hide();
-                lbl_User.Hide();
-                txt_Name.Hide();
-                btn_Play.Hide();
-                lbl_Gamename.Hide();
-                Picbox_SchoolImage.Hide();
-                this.ClientSize = new System.Drawing.Size(800, 600);
-                Picbox_Background.Image = Properties.Resources.Setting;
-                */
-
-                Game_Intro();
+                Pre_Game1();
+                text_Value[3] = text_Value[3].Replace("나는", txt_Name.Text + "...");
             }
         }
 
         /* wav 재생 함수 */
         private void playSubwaySound()
         {
-            SoundPlayer wp = new SoundPlayer(Properties.Resources.Subway);
+            wp = new SoundPlayer(Properties.Resources.Subway);
             wp.Play();
         }
 
@@ -299,12 +316,14 @@ namespace Simulation_Form
             btn_Start.FlatAppearance.BorderSize = 5;
             startCreate = true;
 
+
+
         }
 
         // =======================GAME BEGINS======================
-        private void Game_Intro()
+        private void Pre_Game1()
         {
-            game_mode = GameState.In_Game1;
+            game_mode = GameState.Pre_Game1;
             playSubwaySound();
 
             btn_Start.Hide();
@@ -314,48 +333,251 @@ namespace Simulation_Form
             lbl_Gamename.Hide();
             Picbox_SchoolImage.Hide();
             this.ClientSize = new System.Drawing.Size(800, 600);
-            Picbox_Background.Image = Properties.Resources.Setting;
-
-            Controller();
+            Picbox_Background.Image = Properties.Resources.Main;
+            Pre_Game1_Controller();
         }
 
-        // Creates button A and B
-        private void Controller()
+        // Creates button before and next , scenario play by File IO
+        private void Pre_Game1_Controller()
         {
-            btn_A = new Button();
-            btn_A.Location = new System.Drawing.Point(700, 500);
-            btn_A.Name = "btn_Main";
-            btn_A.Size = new System.Drawing.Size(100, 50);
-            btn_A.Text = "A";
-            this.Controls.Add(btn_A);
-            btn_A.BackColor = System.Drawing.Color.Transparent;
-            btn_A.Parent = Picbox_Background;
-            btn_A.FlatStyle = FlatStyle.Flat;
-            btn_A.FlatAppearance.BorderSize = 1;
-            btn_A.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
-            btn_A.ForeColor = System.Drawing.Color.SkyBlue;
-            btn_A.BringToFront();
-            btn_A.Click += new System.EventHandler(this.btn_Play_Click);
-            btn_A.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
-            btn_A.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
+            lbl_Text = new System.Windows.Forms.Label();
+            lbl_Text.Location = new System.Drawing.Point(100, 150);
+            lbl_Text.Name = "lbl_Text";
+            lbl_Text.Size = new System.Drawing.Size(600, 40);
+            lbl_Text.Text = text_Value[0];
+            text_read = 1;
+            this.Controls.Add(lbl_Text);
+            lbl_Text.BackColor = System.Drawing.Color.Transparent;
+            lbl_Text.Parent = Picbox_Background;
+            lbl_Text.BringToFront();
+            lbl_Text.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
 
-            btn_B = new Button();
-            btn_B.Location = new System.Drawing.Point(550, 500);
-            btn_B.Name = "btn_Main";
-            btn_B.Size = new System.Drawing.Size(100, 50);
-            btn_B.Text = "B";
-            this.Controls.Add(btn_B);
-            btn_B.BackColor = System.Drawing.Color.Transparent;
-            btn_B.Parent = Picbox_Background;
-            btn_B.FlatStyle = FlatStyle.Flat;
-            btn_B.FlatAppearance.BorderSize = 1;
-            btn_B.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
-            btn_B.ForeColor = System.Drawing.Color.SkyBlue;
-            btn_B.BringToFront();
-            btn_B.Click += new System.EventHandler(this.btn_Play_Click);
-            btn_B.MouseLeave += new System.EventHandler(this.btn_Play_MouseLeave);
-            btn_B.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Play_MouseMove);
+            btn_before = new Button();
+            btn_before.Location = new System.Drawing.Point(550, 500);
+            btn_before.Name = "btn_before";
+            btn_before.Size = new System.Drawing.Size(100, 50);
+            btn_before.Text = "이전";
+            this.Controls.Add(btn_before);
+            btn_before.BackColor = System.Drawing.Color.Transparent;
+            btn_before.Parent = Picbox_Background;
+            btn_before.FlatStyle = FlatStyle.Flat;
+            btn_before.FlatAppearance.BorderSize = 1;
+            btn_before.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
+            btn_before.ForeColor = System.Drawing.Color.DeepPink;
+            btn_before.BringToFront();
+            btn_before.Click += new System.EventHandler(this.btn_before_Click);
+            btn_before.MouseLeave += new System.EventHandler(this.btn_before_MouseLeave);
+            btn_before.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_before_MouseMove);
+
+            btn_next = new Button();
+            btn_next.Location = new System.Drawing.Point(660, 500);
+            btn_next.Name = "btn_next";
+            btn_next.Size = new System.Drawing.Size(100, 50);
+            btn_next.Text = "다음";
+            this.Controls.Add(btn_next);
+            btn_next.BackColor = System.Drawing.Color.Transparent;
+            btn_next.Parent = Picbox_Background;
+            btn_next.FlatStyle = FlatStyle.Flat;
+            btn_next.FlatAppearance.BorderSize = 1;
+            btn_next.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
+            btn_next.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            btn_next.BringToFront();
+            btn_next.Click += new System.EventHandler(this.btn_next_Click);
+            btn_next.MouseLeave += new System.EventHandler(this.btn_next_MouseLeave);
+            btn_next.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_next_MouseMove);
+
+            int locX = btn_next.Location.X;
+            int locY = btn_next.Location.Y;
+            int dX = (btn_next.Width / 2) + locX;
+            int dY = (btn_next.Height / 2) + locY;
+
+            Point Mouse = new Point(dX, dY);
+            Cursor.Position = this.PointToScreen(Mouse);
         }
 
+        private void btn_before_MouseLeave(object sender, EventArgs e)
+        {
+            btn_before.FlatAppearance.BorderSize = 1;
+            btn_before.BackColor = Color.Transparent;
+        }
+        private void btn_before_MouseMove(object sender, EventArgs e)
+        {
+            btn_before.FlatAppearance.BorderSize = 3;
+        }
+        private void btn_before_Click(object sender, EventArgs e)
+        {
+            switch (game_mode)
+            {
+                case GameState.Pre_Game1:
+                    {
+                        lbl_Text.Invoke(new MethodInvoker(delegate ()
+                        {
+                            if (text_read > 0)
+                            {
+                                lbl_Text.Text = text_Value[--text_read];
+                            }
+                            else
+                            {
+                                text_read = 0;
+                                lbl_Text.Text = text_Value[text_read];
+                            }
+                        }));
+                        break;
+                    }
+                case GameState.In_Game1:
+                    {
+                        lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                        {
+                            if (text_read > 14)
+                            {
+                                lbl_Dialog.Text = text_Value[--text_read].Substring(1);
+                                if (text_Value[text_read].Substring(0, 1) == "U")
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC1;
+                                }
+                                else
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC2;
+                                }
+                            }
+                            else
+                            {
+                                text_read = 14;
+                                lbl_Dialog.Text = text_Value[text_read].Substring(1);
+                                if (text_Value[text_read].Substring(0, 1) == "U")
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC1;
+                                }
+                                else
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC2;
+                                }                            
+                            }
+                        }));
+                        break;
+                    }
+            }
+
+        }
+
+        private void btn_next_MouseLeave(object sender, EventArgs e)
+        {
+            btn_next.FlatAppearance.BorderSize = 1;
+            btn_next.BackColor = Color.Transparent;
+        }
+        private void btn_next_MouseMove(object sender, EventArgs e)
+        {
+            btn_next.FlatAppearance.BorderSize = 3;
+        }
+        private void btn_next_Click(object sender, EventArgs e)
+        {
+            switch (game_mode)
+            {
+                case GameState.Pre_Game1:
+                    {
+                        if (text_read < 14)
+                        {
+                            lbl_Text.Invoke(new MethodInvoker(delegate ()
+                            {
+                                lbl_Text.Text = text_Value[text_read++];
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Text.Invoke(new MethodInvoker(delegate ()
+                            {
+                                text_read = 14;
+                                In_Game1();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game1:
+                    {
+                        if (text_read < 27)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0,1)== "U")
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC1;
+                                }
+                                else
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC2;
+                                }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                Mini_Game1();
+                            }));
+                        }
+                        break;
+                    }
+            }
+
+        }
+
+        // =======================IN GAME1======================
+        private void In_Game1()
+        {
+            game_mode = GameState.In_Game1;
+            Picbox_Background.Image = Properties.Resources.Station;
+            wp.Stop();
+            In_Game1_Controller();
+        }
+
+        // Creates Character Image, Dialog Labels
+        private void In_Game1_Controller()
+        {
+            btn_before.BringToFront();
+            btn_next.BringToFront();
+           
+            lbl_Text.Text = text_Value[13];
+            lbl_Text.ForeColor = Color.Red;
+            lbl_Text.Location = new Point(130, 50);
+
+            lbl_Dialog = new System.Windows.Forms.Label();
+            lbl_Dialog.Location = new System.Drawing.Point(150, 510);
+            lbl_Dialog.Name = "lbl_Dialog";
+            lbl_Dialog.Size = new System.Drawing.Size(400, 40);
+            lbl_Dialog.Text = text_Value[14].Substring(1);
+            lbl_Dialog.ForeColor = Color.White;
+            this.Controls.Add(lbl_Dialog);
+            lbl_Dialog.BackColor = System.Drawing.Color.Transparent;
+            lbl_Dialog.Parent = Picbox_Background;
+            lbl_Dialog.BringToFront();
+            lbl_Dialog.Font = new System.Drawing.Font("맑은 고딕", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
+            
+            Picbox_Character = new PictureBox();
+            Picbox_Character.Image = Properties.Resources.NPC1;
+            Picbox_Character.Location = new System.Drawing.Point(0, 450);
+            Picbox_Character.Name = "Picbox_Character";
+            Picbox_Character.Size = new System.Drawing.Size(150, 150);
+            Picbox_Character.Parent = Picbox_Background;
+            //this.Controls.Add(Picbox_Character);
+            Picbox_Character.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            Picbox_Character.BackColor = System.Drawing.Color.Transparent;
+            Picbox_Character.TabIndex = 0;
+            Picbox_Character.BringToFront();
+            Picbox_Character.TabStop = false;
+
+            int locX = btn_next.Location.X;
+            int locY = btn_next.Location.Y;
+            int dX = (btn_next.Width / 2) + locX;
+            int dY = (btn_next.Height / 2) + locY;
+
+            Point Mouse = new Point(dX, dY);
+            Cursor.Position = this.PointToScreen(Mouse);
+        }
+
+        private void Mini_Game1()
+        {
+
+        }
     }
 }
