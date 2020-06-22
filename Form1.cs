@@ -70,6 +70,7 @@ namespace Simulation_Form
 
 
         List<Student> sList = new List<Student>();
+        int son_choice = 0; // which question will you choose for son game?
 
         public Form1()
         {
@@ -476,36 +477,54 @@ namespace Simulation_Form
                         }));
                         break;
                     }
-                 case GameState.Mini_Game1: 
+                case GameState.Mini_Game1:
                     {
-                        lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                        if (text_read <= 557 && text_read !=535)
                         {
-                            if (text_read > 14)
+                            if (text_read == 516) Picbox_Background.Image = Properties.Resources.Drinkingplace;
+                            lbl_Dialog.Text = text_Value[--text_read].Substring(1);
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
                             {
-                                lbl_Dialog.Text = text_Value[--text_read].Substring(1);
                                 if (text_Value[text_read].Substring(0, 1) == "U")
                                 {
                                     Picbox_Character.Image = Properties.Resources.NPC1;
                                 }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
                                 else
                                 {
-                                    Picbox_Character.Image = Properties.Resources.승수;
+                                    Picbox_Character.Image = Properties.Resources.누구;
                                 }
-                            }
-                            else
-                            {
-                                text_read = 14;
-                                lbl_Dialog.Text = text_Value[text_read].Substring(1);
-                                if (text_Value[text_read].Substring(0, 1) == "U")
-                                {
-                                    Picbox_Character.Image = Properties.Resources.NPC1;
-                                }
-                                else
-                                {
-                                    Picbox_Character.Image = Properties.Resources.승수;
-                                }                            
-                            }
-                        }));
+                            }));
+                        }
+                        else if (text_read < 557 && text_read == 535)
+                        {
+                            lbl_Dialog.Text = text_Value[536].Substring(1);
+                            for(int i=0; i<2; i++) sList[10].Drink();
+                            text_read = 537;
+                        }
+                        else if (text_read == 558)
+                        {
+                            if(son_choice == 0) { son_choice=1; lbl_Dialog.Text = text_Value[557].Substring(1);}
+                            else if (son_choice == 1) {son_choice=2; lbl_Dialog.Text = text_Value[558].Substring(1);}
+                            else if (son_choice == 2) {son_choice=3; lbl_Dialog.Text = text_Value[559].Substring(1);}
+                            else if (son_choice == 3) {son_choice=4; lbl_Dialog.Text = text_Value[560].Substring(1);}
+                            else if (son_choice == 4) {son_choice=5; lbl_Dialog.Text = text_Value[561].Substring(1);}
+                            else if (son_choice == 5) {son_choice=6; lbl_Dialog.Text = text_Value[562].Substring(1);}
+                            else if (son_choice == 6) {son_choice=7; lbl_Dialog.Text = text_Value[563].Substring(1);}
+                            else if (son_choice == 7) {son_choice=8; lbl_Dialog.Text = text_Value[564].Substring(1);}
+                            else if (son_choice == 8) {son_choice=0; lbl_Dialog.Text = text_Value[565].Substring(1);}
+                            //else if (son_choice == 9) {son_choice=0; lbl_Dialog.Text = text_Value[566].Substring(1);}
+
+                        }
                         break;
                     }
 
@@ -579,9 +598,14 @@ namespace Simulation_Form
                     }
                 case GameState.Mini_Game1:
                     {
-                        if (text_read < 800)
+                        if (text_read <= 557 && text_read !=535)
                         {
-                            if(text_read == 518) Picbox_Background.Image = Properties.Resources
+                            if (text_read == 517) Picbox_Background.Image = Properties.Resources.DrinkingGame;
+                            if (text_read == 534)
+                            {
+                                btn_next.Text = "당연";
+                                btn_before.Text = "아니";
+                            }
                             lbl_Dialog.Invoke(new MethodInvoker(delegate ()
                             {
                                 if (text_Value[text_read].Substring(0, 1) == "U")
@@ -603,14 +627,28 @@ namespace Simulation_Form
                                     Picbox_Character.Image = Properties.Resources.누구;
                                 }
                                 lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+
+                                if(text_read == 557) {btn_before.Text = "선택"; btn_next.Text = "접어"}
                             }));
                         }
-                        else
+                        else if (text_read < 557 && text_read == 535)
                         {
-                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
-                            {
-                                In_Game1();
-                            }));
+                            lbl_Dialog.Text = text_Value[535].Substring(1);
+                            text_read = 537;
+                        }
+                        else if (text_read == 558)
+                        {
+                            if(son_choice == 0) {}
+                            else if (son_choice == 1) {}
+                            else if (son_choice == 2) {}
+                            else if (son_choice == 3) {}
+                            else if (son_choice == 4) {}
+                            else if (son_choice == 5) {}
+                            else if (son_choice == 6) {}
+                            else if (son_choice == 7) {}
+                            else if (son_choice == 8) {}
+                            else if (son_choice == 9) {}
+
                         }
                         break;
                     }
@@ -706,7 +744,7 @@ namespace Simulation_Form
             
 
             // 정신차리고 승희를 지키자!
-            //Son Game 1
+
             //"나보다 나이 많은 사람 접어" -> 승희 아웃 (안됨)
             //"서울이 고향인 사람 접어" -> 주인공 한 잔, 유진 아웃, 강민 한 잔
             //"고향 이름에 받침 없으면 접어" -> 승수 한잔, 효제 한 잔
@@ -717,8 +755,15 @@ namespace Simulation_Form
             //"아직 20살 미만이면 접어" -> 보람 한 잔
             //"학번 190000 미만 접어" -> 강민 한 잔 보람 한 잔
 
-            //Son Game 3
 
+            //보람, 강민, 그리고 주인공 모두 필름이 존재할 때
+            //while((sList[7].Film==true || sList[9].File==true) && sList[10].Film==true) {
+                
+            //}
+            //if(sList[10].Film==false)
+            //{
+            //    this.Close();
+            //}
         }
         private void Mini_Game1_Controller()
         {
