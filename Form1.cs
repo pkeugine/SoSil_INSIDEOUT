@@ -783,5 +783,18 @@ namespace Simulation_Form
         {
             MessageBox.Show(sList[0].Status().ToString());
         }
+       
     }
+    private Button Start_button;
+        private Button Result_button;
+        private Button RESET;
+        private Button Show_Ans_button;
+
+        private TextBox textBox1;
+
+        private Label label1;
+
+        private CheckBox Box1, Box2, Box3, Box4, Box5, Box6, Box7;
+
+        int answer = 0;
 }
