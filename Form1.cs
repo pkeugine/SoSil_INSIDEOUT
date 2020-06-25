@@ -53,9 +53,6 @@ namespace Simulation_Form
         private Button btn_before;
         private Button btn_next;
 
-        private Button btn_Yes;
-        private Button btn_No;
-
         private Label lbl_User;
         private TextBox txt_Name;
 
@@ -66,9 +63,6 @@ namespace Simulation_Form
         private string[] text_Value; // 시나리오 전체 Text
         private int text_read; // 시나리오 현재 line
         private int text_line; // 시나리오 전체 line
-        private int mini_game_count = 10;
-        private int false_count = 0;
-
         bool startCreate = false;
 
         private SoundPlayer wp; // Sound 도입
@@ -201,13 +195,7 @@ namespace Simulation_Form
             btn_Exit.Show();
             lbl_Gamename.Show();
             Picbox_SchoolImage.Show();
-
             Picbox_Background.Image = Properties.Resources.Background;
-            /*
-            Bitmap a = Properties.Resources.temp;
-            a.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            Picbox_Background.Image = a;
-            */
         }
 
 
@@ -433,10 +421,20 @@ namespace Simulation_Form
             btn_before.FlatAppearance.BorderSize = 1;
             btn_before.BackColor = Color.Transparent;
         }
+        private void btn_next_MouseLeave(object sender, EventArgs e)
+        {
+            btn_next.FlatAppearance.BorderSize = 1;
+            btn_next.BackColor = Color.Transparent;
+        }
         private void btn_before_MouseMove(object sender, EventArgs e)
         {
             btn_before.FlatAppearance.BorderSize = 3;
         }
+        private void btn_next_MouseMove(object sender, EventArgs e)
+        {
+            btn_next.FlatAppearance.BorderSize = 3;
+        }
+
         private void btn_before_Click(object sender, EventArgs e)
         {
             switch (game_mode)
@@ -484,35 +482,88 @@ namespace Simulation_Form
                                 else
                                 {
                                     Picbox_Character.Image = Properties.Resources.승수;
-                                }
+                                }                            
                             }
                         }));
                         break;
                     }
                 case GameState.Mini_Game1:
                     {
+                        if (text_read <= 557 && text_read !=535)
+                        {
+                            if (text_read == 516) Picbox_Background.Image = Properties.Resources.Drinkingplace;
+                            lbl_Dialog.Text = text_Value[--text_read].Substring(1);
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U")
+                                {
+                                    Picbox_Character.Image = Properties.Resources.NPC1;
+                                }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                            }));
+                        }
+                        else if (text_read < 557 && text_read == 535)
+                        {
+                            lbl_Dialog.Text = text_Value[536].Substring(1);
+                            for(int i=0; i<2; i++) sList[10].Drink();
+                            text_read = 537;
+                        }
+                        else if (text_read == 558)
+                        {
+                            if(son_choice == 0) { son_choice=1; lbl_Dialog.Text = text_Value[557].Substring(1);}
+                            else if (son_choice == 1) {son_choice=2; lbl_Dialog.Text = text_Value[558].Substring(1);}
+                            else if (son_choice == 2) {son_choice=3; lbl_Dialog.Text = text_Value[559].Substring(1);}
+                            else if (son_choice == 3) {son_choice=4; lbl_Dialog.Text = text_Value[560].Substring(1);}
+                            else if (son_choice == 4) {son_choice=5; lbl_Dialog.Text = text_Value[561].Substring(1);}
+                            else if (son_choice == 5) {son_choice=6; lbl_Dialog.Text = text_Value[562].Substring(1);}
+                            else if (son_choice == 6) {son_choice=7; lbl_Dialog.Text = text_Value[563].Substring(1);}
+                            else if (son_choice == 7) {son_choice=8; lbl_Dialog.Text = text_Value[564].Substring(1);}
+                            else if (son_choice == 8) {son_choice=0; lbl_Dialog.Text = text_Value[565].Substring(1);}
+                            //else if (son_choice == 9) {son_choice=0; lbl_Dialog.Text = text_Value[566].Substring(1);}
+
+                        }
                         break;
                     }
-
+                case GameState.In_Game2:
+                    {
+                        break;
+                    }
+                case GameState.In_Game3:
+                    {
+                        break;
+                    }
+                case GameState.In_Game4_1:
+                    {
+                        break;
+                    }
+                case GameState.In_Game4_2:
+                    {
+                        break;
+                    }
+                case GameState.In_Game4_3:
+                    {
+                        break;
+                    }
             }
 
         }
 
-        private void btn_next_MouseLeave(object sender, EventArgs e)
-        {
-            btn_next.FlatAppearance.BorderSize = 1;
-            btn_next.BackColor = Color.Transparent;
-        }
-        private void btn_next_MouseMove(object sender, EventArgs e)
-        {
-            btn_next.FlatAppearance.BorderSize = 3;
-        }
         private void btn_next_Click(object sender, EventArgs e)
         {
             switch (game_mode)
             {
                 case GameState.Pre_Game1:
-
                     {
 
                         if (text_read < 14)
@@ -539,12 +590,11 @@ namespace Simulation_Form
                     }
                 case GameState.In_Game1:
                     {
-                        if (text_read < 32)
+                        if (text_read < 26)
                         {
-
                             lbl_Dialog.Invoke(new MethodInvoker(delegate ()
                             {
-                                if (text_Value[text_read].Substring(0, 1) == "U")
+                                if (text_Value[text_read].Substring(0,1)== "U")
                                 {
                                     Picbox_Character.Image = Properties.Resources.NPC1;
                                 }
@@ -559,17 +609,245 @@ namespace Simulation_Form
                         {
                             lbl_Dialog.Invoke(new MethodInvoker(delegate ()
                             {
-                                Mini_Game1();
+                                In_Game2();
                             }));
                         }
                         break;
                     }
                 case GameState.Mini_Game1:
                     {
-                        In_Game2();
+                        if (text_read < 758 && text_read !=735)
+                        {
+                            if (text_read == 717) Picbox_Background.Image = Properties.Resources.DrinkingGame;
+                            if (text_read == 734)
+                            {
+                                btn_next.Text = "당연";
+                                btn_before.Text = "아니";
+                            }
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
 
+                                if(text_read == 757) {btn_before.Text = "교체"; btn_next.Text = "사용"; }
+                            }));
+                        }
+                        else if (text_read < 757 && text_read == 735)
+                        {
+                            lbl_Dialog.Text = text_Value[735].Substring(1);
+                            text_read = 737;
+                        }
+                        else if (text_read == 758)
+                        {
+                            if(son_choice == 0) {}
+                            else if (son_choice == 1) {}
+                            else if (son_choice == 2) {}
+                            else if (son_choice == 3) {}
+                            else if (son_choice == 4) {}
+                            else if (son_choice == 5) {}
+                            else if (son_choice == 6) {}
+                            else if (son_choice == 7) {}
+                            else if (son_choice == 8) {}
+                            else if (son_choice == 9) {}
+
+                        }
                         break;
-
+                    }
+                case GameState.In_Game2:
+                    {
+                        if (text_read < 151)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        } else 
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                In_Game3();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game3:
+                    {
+                        if (text_read < 203)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        } else 
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                In_Game4_1();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game4_1:
+                    {
+                        if (text_read < 325)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                In_Game4_2();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game4_2:
+                    {
+                        if (text_read < 423)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                In_Game4_3();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game4_3:
+                    {
+                        if (text_read < 529)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                In_Game5();
+                            }));
+                        }
+                        break;
+                    }
+                case GameState.In_Game5:
+                    {
+                        if (text_read < 609)
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                if (text_Value[text_read].Substring(0, 1) == "U") { Picbox_Character.Image = Properties.Resources.NPC1; }
+                                else if (text_Value[text_read].Substring(0, 1) == "A") { Picbox_Character.Image = Properties.Resources.승수; }
+                                else if (text_Value[text_read].Substring(0, 1) == "B") { Picbox_Character.Image = Properties.Resources.유진; }
+                                else if (text_Value[text_read].Substring(0, 1) == "C") { Picbox_Character.Image = Properties.Resources.세현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "D") { Picbox_Character.Image = Properties.Resources.상민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "E") { Picbox_Character.Image = Properties.Resources.승희; }
+                                else if (text_Value[text_read].Substring(0, 1) == "F") { Picbox_Character.Image = Properties.Resources.승현; }
+                                else if (text_Value[text_read].Substring(0, 1) == "G") { Picbox_Character.Image = Properties.Resources.경동; }
+                                else if (text_Value[text_read].Substring(0, 1) == "H") { Picbox_Character.Image = Properties.Resources.보람; }
+                                else if (text_Value[text_read].Substring(0, 1) == "I") { Picbox_Character.Image = Properties.Resources.효제; }
+                                else if (text_Value[text_read].Substring(0, 1) == "J") { Picbox_Character.Image = Properties.Resources.강민; }
+                                else if (text_Value[text_read].Substring(0, 1) == "(") { Picbox_Character.Image = Properties.Resources.교수님; }
+                                else { Picbox_Character.Image = Properties.Resources.누구; }
+                                lbl_Dialog.Text = text_Value[text_read++].Substring(1);
+                            }));
+                        }
+                        else
+                        {
+                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
+                            {
+                                Mini_Game1();
+                            }));
+                        }
+                        break;
                     }
             }
 
@@ -588,7 +866,7 @@ namespace Simulation_Form
         {
             btn_before.BringToFront();
             btn_next.BringToFront();
-
+           
             lbl_Text.Text = text_Value[13];
             lbl_Text.ForeColor = Color.Red;
             lbl_Text.Location = new Point(130, 50);
@@ -604,7 +882,7 @@ namespace Simulation_Form
             lbl_Dialog.Parent = Picbox_Background;
             lbl_Dialog.BringToFront();
             lbl_Dialog.Font = new System.Drawing.Font("맑은 고딕", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
-
+            
             Picbox_Character = new PictureBox();
             Picbox_Character.Image = Properties.Resources.NPC1;
             Picbox_Character.Location = new System.Drawing.Point(0, 450);
@@ -627,161 +905,120 @@ namespace Simulation_Form
             Cursor.Position = this.PointToScreen(Mouse);
         }
 
-        // =======================MINI GAME1======================
+         // =======================MINI GAME1======================
         private void Mini_Game1()
         {
+            text_read = 700;
             game_mode = GameState.Mini_Game1;
-            btn_before.Hide();
-            btn_next.Hide();
+            Picbox_Background.Image = Properties.Resources.Drinkingplace;
             Mini_Game1_Controller();
+
+            //대사    U      A    B    C   E   I    H    J
+            //번호    10     0    1    2   4   8    7    9
+            //       주인공 승수 유진 세현 승희 효제 보람 강민
+            //나이    20     20  20   20   21  22   19   26
+            //성별    남     남   남  남    여  남   여   남
+            //지역    서울  파주 서울 부산 대전 제주 인천 서울
+            //통학    네     네  네   노   노   노   네   네
+            //애인    노     노  노   노   노   노   네   노
+            //주량    15     8   0    1    0   9    10   5
+            //상태    0      5   0    2    0   4     8   4
+            //현황    
+
+
+            // 초기 음주 상태.
+            for (int i = 0; i <= 5; i++) sList[0].Drink();
+            for (int i = 0; i <= 2; i++) sList[2].Drink();
+            for (int i = 0; i <= 4; i++) sList[8].Drink();
+            for (int i = 0; i <= 8; i++) sList[7].Drink();
+            for (int i = 0; i <= 4; i++) sList[9].Drink();
+
+            // 즐겁게 놀며 나를 계속 먹임
+            for (int i = 0; i < 8; i++) sList[10].Drink();
+            // 주인공 9잔
+
+            //상민이가 여자인 것을 모르면 추가 1잔
+            
+
+            // 정신차리고 승희를 지키자!
+
+            //"나보다 나이 많은 사람 접어" -> 승희 아웃 (안됨)
+            //"서울이 고향인 사람 접어" -> 주인공 한 잔, 유진 아웃, 강민 한 잔
+            //"고향 이름에 받침 없으면 접어" -> 승수 한잔, 효제 한 잔
+            //"나보다 나이 많은 남자 접어" -> 효제 한 잔 , 강민 한 잔
+            //"나이 25 이상이면 접어" -> 강민 한 잔
+            //"애인 있으면 접어" -> 보람 한 잔
+            //"이름 보람이면 접어" -> 보람 한 잔
+            //"아직 20살 미만이면 접어" -> 보람 한 잔
+            //"학번 190000 미만 접어" -> 강민 한 잔 보람 한 잔
+
+
+            //보람, 강민, 그리고 주인공 모두 필름이 존재할 때
+            //while((sList[7].Film==true || sList[9].File==true) && sList[10].Film==true) {
+                
+            //}
+            //if(sList[10].Film==false)
+            //{
+            //    this.Close();
+            //}
         }
         private void Mini_Game1_Controller()
         {
-            btn_Yes = new Button();
-            btn_Yes.Location = new System.Drawing.Point(550, 500);
-            btn_Yes.Name = "btn_Yes";
-            btn_Yes.Size = new System.Drawing.Size(100, 50);
-            btn_Yes.Text = "O";
-            this.Controls.Add(btn_Yes);
-            btn_Yes.BackColor = System.Drawing.Color.Transparent;
-            btn_Yes.Parent = Picbox_Background;
-            btn_Yes.FlatStyle = FlatStyle.Flat;
-            btn_Yes.FlatAppearance.BorderSize = 1;
-            btn_Yes.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
-            btn_Yes.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            btn_Yes.BringToFront();
-            btn_Yes.Click += new System.EventHandler(this.btn_YesNo_Click);
-            btn_Yes.MouseLeave += new System.EventHandler(this.btn_Yes_MouseLeave);
-            btn_Yes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Yes_MouseMove);
-
-            btn_No = new Button();
-            btn_No.Location = new System.Drawing.Point(660, 500);
-            btn_No.Name = "btn_No";
-            btn_No.Size = new System.Drawing.Size(100, 50);
-            btn_No.Text = "X";
-            this.Controls.Add(btn_No);
-            btn_No.BackColor = System.Drawing.Color.Transparent;
-            btn_No.Parent = Picbox_Background;
-            btn_No.FlatStyle = FlatStyle.Flat;
-            btn_No.FlatAppearance.BorderSize = 1;
-            btn_No.Font = new System.Drawing.Font("맑은 고딕", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(15)));
-            btn_No.ForeColor = System.Drawing.Color.DeepPink;
-            btn_No.BringToFront();
-            btn_No.Click += new System.EventHandler(this.btn_YesNo_Click);
-            btn_No.MouseLeave += new System.EventHandler(this.btn_No_MouseLeave);
-            btn_No.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_No_MouseMove);
-
-            lbl_Dialog.Text = text_Value[text_read++].Substring(2);
-            /* 사진 회전 기능
             btn_before.BringToFront();
             btn_next.BringToFront();
 
-            lbl_Dialog.Text = text_Value[499].Substring(1);
-            */
-        }
-        private void btn_Yes_MouseLeave(object sender, EventArgs e)
-        {
-            btn_Yes.FlatAppearance.BorderSize = 1;
-            btn_Yes.BackColor = Color.Transparent;
-        }
-        private void btn_Yes_MouseMove(object sender, EventArgs e)
-        {
-            btn_Yes.FlatAppearance.BorderSize = 3;
-        }
-        private void btn_No_MouseLeave(object sender, EventArgs e)
-        {
-            btn_No.FlatAppearance.BorderSize = 1;
-            btn_No.BackColor = Color.Transparent;
-        }
-        private void btn_No_MouseMove(object sender, EventArgs e)
-        {
-            btn_No.FlatAppearance.BorderSize = 3;
-        }
-        private void btn_YesNo_Click(object sender, EventArgs e)
-        {
-            switch (game_mode)
-            {
-                case GameState.Mini_Game1:
-                    {
-                        if (text_read < 42)
-                        {
-                            lbl_Dialog.Invoke(new MethodInvoker(delegate ()
-                            {
-                                if (text_Value[text_read].Substring(0, 1) == "U")
-                                {
-                                    Picbox_Character.Image = Properties.Resources.NPC1;
-                                }
-                                else
-                                {
-                                    Picbox_Character.Image = Properties.Resources.승수;
-                                }
-                                Button YN = sender as Button;
-                                if (YN.Text == "X" && text_Value[text_read-1].Substring(1,1)=="N")
-                                {
-                                   if(mini_game_count<10)
-                                    {
-                                        mini_game_count++;
-                                    }
-                                  
-                                }
-                                else if(YN.Text == "O" && text_Value[text_read-1].Substring(1, 1) == "Y")
-                                {
-                                    if(mini_game_count<10)
-                                    {
-                                        mini_game_count++;
-                                    }
-                                    
-                                }
-                                else // 오답
-                                {
-                                    mini_game_count--;
-                                    false_count++;
-                                    lbl_Text.Invoke(new MethodInvoker(delegate ()
-                                    {
-                                        lbl_Text.Text = text_Value[13].Replace("50분", "5"+false_count.ToString()+"분");
-                                    }));
-                                    MessageBox.Show("안타깝지만 오답입니다!");
-                                }
-                                lbl_Dialog.Text = text_Value[text_read++].Substring(2);
-                            }));
-                        }
-                        else // 게임종료
-                        {
-                            //MessageBox.Show(mini_game_count.ToString());
-                            if(false_count<5)
-                            {
-                                sList[0].Enjoy();
-                                lbl_Dialog.Invoke(new MethodInvoker(delegate ()
-                                {
-                                    lbl_Dialog.Text = text_Value[42].Substring(1);
-                                    btn_Yes.Hide();
-                                    btn_No.Hide();
-                                    btn_next.Show();
-                                }));
-
-                            }
-                            else
-                            {
-                                sList[0].Hate();
-                                lbl_Dialog.Invoke(new MethodInvoker(delegate ()
-                                {
-                                    lbl_Dialog.Text = text_Value[43].Substring(1);
-                                    btn_Yes.Hide();
-                                    btn_No.Hide();
-                                    btn_next.Show();
-                                }));
-                 
-                            }
-                           
-                        }
-                        break;
-                    }
-            }
+            lbl_Dialog.Text = text_Value[699].Substring(1);
         }
 
+        // =======================IN GAME2======================
         private void In_Game2()
         {
+            text_read = 100;
+            lbl_Dialog.Text = text_Value[99].Substring(1);
+            game_mode = GameState.In_Game2;
 
+            lbl_Text.Hide();
+
+            Bitmap temp = Properties.Resources.Saebit;
+            temp.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            Picbox_Background.Image = temp;
+        }
+        private void In_Game3()
+        {
+            text_read = 200;
+            lbl_Dialog.Text = text_Value[199].Substring(1);
+            game_mode = GameState.In_Game3;
+            Picbox_Background.Image = Properties.Resources.Chambit;
+        }
+        private void In_Game4_1() 
+        {
+            text_read = 300;
+            lbl_Dialog.Text = text_Value[299].Substring(1);
+            game_mode = GameState.In_Game4_1;
+            Picbox_Background.Image = Properties.Resources.Library;
+            Picbox_Character.Image = Properties.Resources.NPC1;
+        }
+        private void In_Game4_2()
+        {
+            text_read = 400;
+            lbl_Dialog.Text = text_Value[399].Substring(1);
+            game_mode = GameState.In_Game4_2;
+            Picbox_Background.Image = Properties.Resources.Restaurant;
+        }
+        private void In_Game4_3()
+        {
+            text_read = 500;
+            lbl_Dialog.Text = text_Value[499].Substring(1);
+            game_mode = GameState.In_Game4_3;
+            Picbox_Background.Image = Properties.Resources.Ceedeepee;
+        }
+        private void In_Game5()
+        {
+            text_read = 600;
+            lbl_Dialog.Text = text_Value[599].Substring(1);
+            game_mode = GameState.In_Game5;
+            Picbox_Background.Image = Properties.Resources.Bima;
         }
     }
+
 }
