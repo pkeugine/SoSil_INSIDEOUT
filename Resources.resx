@@ -118,11 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="상민" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\상민.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="경동" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\경동.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="승수" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\승수.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Main" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Main.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,11 +130,11 @@
   <data name="NPC2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\NPC2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="강민" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\강민.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="보람" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\보람.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Subway" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Subway.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Prolog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Prolog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,11 +142,14 @@
   <data name="승현" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\승현.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Subway" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Subway.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="경동" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\경동.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="시나리오" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\시나리오.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="유진" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\유진.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SchoolImage_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\SchoolImage_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,11 +157,17 @@
   <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="NPC1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\NPC1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DrinkingGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DrinkingGame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="승희" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\승희.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="승수" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\승수.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="강민" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\강민.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="효제" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\효제.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,22 +175,40 @@
   <data name="누구" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\누구.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="유진" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\유진.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="세현" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\세현.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="상민" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\상민.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Drinkingplace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Drinkingplace.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NPC1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\NPC1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="세현" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\세현.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrinkingGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DrinkingGame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Saebit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Saebit.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="temp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\temp.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Saebit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Saebit2.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Saebit3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Saebit3.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ceedeepee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ceedeepee.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chambit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chambit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Restaurant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restaurant.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="교수님" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\교수님.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Library" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Library.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bima" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bima.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
