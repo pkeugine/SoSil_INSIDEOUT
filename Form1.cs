@@ -828,6 +828,7 @@ namespace Simulation_Form
             this.Start_button.Size = new System.Drawing.Size(347, 42);
             this.Start_button.TabIndex = 0;
             this.Start_button.Text = "두자리수 맞추기 게임 시작!";
+            Start_button.Parent = Picbox_Background;
             this.Start_button.UseVisualStyleBackColor = false;
             this.Start_button.Click += new System.EventHandler(this.Start_button_Click);
             // 
@@ -841,6 +842,7 @@ namespace Simulation_Form
             this.Result_button.Size = new System.Drawing.Size(347, 68);
             this.Result_button.TabIndex = 1;
             this.Result_button.Text = "결과는?";
+            Result_button.Parent = Picbox_Background;
             this.Result_button.UseVisualStyleBackColor = false;
             this.Result_button.Click += new System.EventHandler(this.Result_button_Click);
             // 
@@ -854,6 +856,7 @@ namespace Simulation_Form
             this.RESET.Size = new System.Drawing.Size(347, 58);
             this.RESET.TabIndex = 2;
             this.RESET.Text = "RESET";
+            RESET.Parent = Picbox_Background;
             this.RESET.UseVisualStyleBackColor = false;
             this.RESET.Click += new System.EventHandler(this.RESET_Click);
             // 
@@ -866,6 +869,7 @@ namespace Simulation_Form
             this.Show_Ans_button.Size = new System.Drawing.Size(347, 49);
             this.Show_Ans_button.TabIndex = 3;
             this.Show_Ans_button.Text = "정답은?";
+            Show_Ans_button.Parent = Picbox_Background;
             this.Show_Ans_button.UseVisualStyleBackColor = false;
             this.Show_Ans_button.Click += new System.EventHandler(this.Show_Ans_button_Click);
             // 
@@ -873,6 +877,7 @@ namespace Simulation_Form
             // 
             this.textBox1.Location = new System.Drawing.Point(715, 95);
             this.textBox1.Name = "textBox1";
+            textBox1.Parent = Picbox_Background;
             this.textBox1.Size = new System.Drawing.Size(282, 25);
             this.textBox1.TabIndex = 4;
             // 
@@ -884,6 +889,7 @@ namespace Simulation_Form
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(409, 36);
             this.label1.TabIndex = 5;
+            label1.Parent = Picbox_Background;
             this.label1.Text = "생각되는 두자리수를 입력하세요";
             // 
             // Box1
@@ -896,6 +902,7 @@ namespace Simulation_Form
             this.Box1.Size = new System.Drawing.Size(153, 28);
             this.Box1.TabIndex = 6;
             this.Box1.Text = "20이상입니까?";
+            Box1.Parent = Picbox_Background;
             this.Box1.UseVisualStyleBackColor = false;
             this.Box1.CheckedChanged += new System.EventHandler(this.Box1_CheckedChanged);
             // 
@@ -909,6 +916,7 @@ namespace Simulation_Form
             this.Box2.Size = new System.Drawing.Size(153, 28);
             this.Box2.TabIndex = 7;
             this.Box2.Text = "40이상입니까?";
+            Box2.Parent = Picbox_Background;
             this.Box2.UseVisualStyleBackColor = false;
             this.Box2.CheckedChanged += new System.EventHandler(this.Box2_CheckedChanged);
             // 
@@ -922,6 +930,7 @@ namespace Simulation_Form
             this.Box3.Size = new System.Drawing.Size(153, 28);
             this.Box3.TabIndex = 8;
             this.Box3.Text = "60이상입니까?";
+            Box3.Parent = Picbox_Background;
             this.Box3.UseVisualStyleBackColor = false;
             this.Box3.CheckedChanged += new System.EventHandler(this.Box3_CheckedChanged);
             // 
@@ -935,6 +944,7 @@ namespace Simulation_Form
             this.Box4.Size = new System.Drawing.Size(153, 28);
             this.Box4.TabIndex = 9;
             this.Box4.Text = "80이상입니까?";
+            Box4.Parent = Picbox_Background;
             this.Box4.UseVisualStyleBackColor = false;
             this.Box4.CheckedChanged += new System.EventHandler(this.Box4_CheckedChanged);
             // 
@@ -948,6 +958,7 @@ namespace Simulation_Form
             this.Box5.Size = new System.Drawing.Size(133, 28);
             this.Box5.TabIndex = 10;
             this.Box5.Text = "소수입니까?";
+            Box5.Parent = Picbox_Background;
             this.Box5.UseVisualStyleBackColor = false;
             this.Box5.CheckedChanged += new System.EventHandler(this.Box5_CheckedChanged);
             // 
@@ -961,6 +972,7 @@ namespace Simulation_Form
             this.Box6.Size = new System.Drawing.Size(203, 28);
             this.Box6.TabIndex = 11;
             this.Box6.Text = "3으로 나누어집니까?";
+            Box6.Parent = Picbox_Background;
             this.Box6.UseVisualStyleBackColor = false;
             this.Box6.CheckedChanged += new System.EventHandler(this.Box6_CheckedChanged);
             // 
@@ -974,6 +986,7 @@ namespace Simulation_Form
             this.Box7.Size = new System.Drawing.Size(185, 28);
             this.Box7.TabIndex = 12;
             this.Box7.Text = "4로 나누어집니까?";
+            Box7.Parent = Picbox_Background;
             this.Box7.UseVisualStyleBackColor = false;
             this.Box7.CheckedChanged += new System.EventHandler(this.Box7_CheckedChanged);
             // 
