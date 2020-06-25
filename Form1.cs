@@ -1102,4 +1102,5 @@ namespace Simulation_Form
             else
                 MessageBox.Show("아니오");
         }
+    }
 }
