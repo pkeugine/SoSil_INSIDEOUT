@@ -1128,5 +1128,29 @@ namespace Simulation_Form
             else
                 MessageBox.Show("아니오");
         }
+    
+        private void Start_button_MouseMove(object sender, MouseEventArgs e)
+        {
+            Start_button.BackColor = Color.Transparent;
+            Start_button.FlatAppearance.BorderSize = 3;
+        }
+
+        private void Result_button_MouseMove(object sender, MouseEventArgs e)
+        {
+            Start_button.BackColor = Color.Transparent;
+            Start_button.FlatAppearance.BorderSize = 3;
+        }
+
+        private void RESET_MouseMove(object sender, MouseEventArgs e)
+        {
+            Start_button.BackColor = Color.Transparent;
+            Start_button.FlatAppearance.BorderSize = 3;
+        }
+
+        private void Show_Ans_button_MouseMove(object sender, MouseEventArgs e)
+        {
+            Start_button.BackColor = Color.Transparent;
+            Start_button.FlatAppearance.BorderSize = 3;
+        }
     }
 }
