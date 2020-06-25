@@ -817,6 +817,20 @@ namespace Simulation_Form
             this.Box5 = new System.Windows.Forms.CheckBox();
             this.Box6 = new System.Windows.Forms.CheckBox();
             this.Box7 = new System.Windows.Forms.CheckBox();
+            
+            Start_button.FlatStyle = FlatStyle.Flat;
+            Result_button.FlatStyle = FlatStyle.Flat;
+            RESET.FlatStyle = FlatStyle.Flat;
+            Show_Ans_button.FlatStyle = FlatStyle.Flat;
+            textBox1.FlatStyle = FlatStyle.Flat;
+            label1.FlatStyle = FlatStyle.Flat;
+            Box1.FlatStyle = FlatStyle.Flat;
+            Box2.FlatStyle = FlatStyle.Flat;
+            Box3.FlatStyle = FlatStyle.Flat;
+            Box4.FlatStyle = FlatStyle.Flat;
+            Box5.FlatStyle = FlatStyle.Flat;
+            Box6.FlatStyle = FlatStyle.Flat;
+            Box7.FlatStyle = FlatStyle.Flat;
             this.SuspendLayout();
             
             
