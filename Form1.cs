@@ -785,7 +785,7 @@ namespace Simulation_Form
         }
        
     }
-    private Button Start_button;
+        private Button Start_button;
         private Button Result_button;
         private Button RESET;
         private Button Show_Ans_button;
@@ -797,4 +797,208 @@ namespace Simulation_Form
         private CheckBox Box1, Box2, Box3, Box4, Box5, Box6, Box7;
 
         int answer = 0;
+    
+        private void Game() {
+            Game_Controller();
+        }
+    
+        private void Game_Controller() {
+            
+            this.Start_button = new System.Windows.Forms.Button();
+            this.Result_button = new System.Windows.Forms.Button();
+            this.RESET = new System.Windows.Forms.Button();
+            this.Show_Ans_button = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Box1 = new System.Windows.Forms.CheckBox();
+            this.Box2 = new System.Windows.Forms.CheckBox();
+            this.Box3 = new System.Windows.Forms.CheckBox();
+            this.Box4 = new System.Windows.Forms.CheckBox();
+            this.Box5 = new System.Windows.Forms.CheckBox();
+            this.Box6 = new System.Windows.Forms.CheckBox();
+            this.Box7 = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
+            
+            
+            
+            this.Start_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.Start_button.Font = new System.Drawing.Font("함초롬돋움", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Start_button.Location = new System.Drawing.Point(198, 82);
+            this.Start_button.Name = "Start_button";
+            this.Start_button.Size = new System.Drawing.Size(347, 42);
+            this.Start_button.TabIndex = 0;
+            this.Start_button.Text = "두자리수 맞추기 게임 시작!";
+            this.Start_button.UseVisualStyleBackColor = false;
+            this.Start_button.Click += new System.EventHandler(this.Start_button_Click);
+            // 
+            // Result_button
+            // 
+            this.Result_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Result_button.Font = new System.Drawing.Font("함초롬돋움", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Result_button.ForeColor = System.Drawing.Color.Red;
+            this.Result_button.Location = new System.Drawing.Point(198, 175);
+            this.Result_button.Name = "Result_button";
+            this.Result_button.Size = new System.Drawing.Size(347, 68);
+            this.Result_button.TabIndex = 1;
+            this.Result_button.Text = "결과는?";
+            this.Result_button.UseVisualStyleBackColor = false;
+            this.Result_button.Click += new System.EventHandler(this.Result_button_Click);
+            // 
+            // RESET
+            // 
+            this.RESET.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.RESET.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.RESET.ForeColor = System.Drawing.Color.Red;
+            this.RESET.Location = new System.Drawing.Point(198, 288);
+            this.RESET.Name = "RESET";
+            this.RESET.Size = new System.Drawing.Size(347, 58);
+            this.RESET.TabIndex = 2;
+            this.RESET.Text = "RESET";
+            this.RESET.UseVisualStyleBackColor = false;
+            this.RESET.Click += new System.EventHandler(this.RESET_Click);
+            // 
+            // Show_Ans_button
+            // 
+            this.Show_Ans_button.BackColor = System.Drawing.Color.Lime;
+            this.Show_Ans_button.Font = new System.Drawing.Font("함초롬돋움", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Show_Ans_button.Location = new System.Drawing.Point(198, 384);
+            this.Show_Ans_button.Name = "Show_Ans_button";
+            this.Show_Ans_button.Size = new System.Drawing.Size(347, 49);
+            this.Show_Ans_button.TabIndex = 3;
+            this.Show_Ans_button.Text = "정답은?";
+            this.Show_Ans_button.UseVisualStyleBackColor = false;
+            this.Show_Ans_button.Click += new System.EventHandler(this.Show_Ans_button_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(715, 95);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(282, 25);
+            this.textBox1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("함초롬돋움", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(658, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(409, 36);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "생각되는 두자리수를 입력하세요";
+            // 
+            // Box1
+            // 
+            this.Box1.AutoSize = true;
+            this.Box1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box1.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box1.Location = new System.Drawing.Point(715, 175);
+            this.Box1.Name = "Box1";
+            this.Box1.Size = new System.Drawing.Size(153, 28);
+            this.Box1.TabIndex = 6;
+            this.Box1.Text = "20이상입니까?";
+            this.Box1.UseVisualStyleBackColor = false;
+            this.Box1.CheckedChanged += new System.EventHandler(this.Box1_CheckedChanged);
+            // 
+            // Box2
+            // 
+            this.Box2.AutoSize = true;
+            this.Box2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box2.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box2.Location = new System.Drawing.Point(715, 245);
+            this.Box2.Name = "Box2";
+            this.Box2.Size = new System.Drawing.Size(153, 28);
+            this.Box2.TabIndex = 7;
+            this.Box2.Text = "40이상입니까?";
+            this.Box2.UseVisualStyleBackColor = false;
+            this.Box2.CheckedChanged += new System.EventHandler(this.Box2_CheckedChanged);
+            // 
+            // Box3
+            // 
+            this.Box3.AutoSize = true;
+            this.Box3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box3.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box3.Location = new System.Drawing.Point(715, 315);
+            this.Box3.Name = "Box3";
+            this.Box3.Size = new System.Drawing.Size(153, 28);
+            this.Box3.TabIndex = 8;
+            this.Box3.Text = "60이상입니까?";
+            this.Box3.UseVisualStyleBackColor = false;
+            this.Box3.CheckedChanged += new System.EventHandler(this.Box3_CheckedChanged);
+            // 
+            // Box4
+            // 
+            this.Box4.AutoSize = true;
+            this.Box4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box4.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box4.Location = new System.Drawing.Point(715, 384);
+            this.Box4.Name = "Box4";
+            this.Box4.Size = new System.Drawing.Size(153, 28);
+            this.Box4.TabIndex = 9;
+            this.Box4.Text = "80이상입니까?";
+            this.Box4.UseVisualStyleBackColor = false;
+            this.Box4.CheckedChanged += new System.EventHandler(this.Box4_CheckedChanged);
+            // 
+            // Box5
+            // 
+            this.Box5.AutoSize = true;
+            this.Box5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box5.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box5.Location = new System.Drawing.Point(915, 175);
+            this.Box5.Name = "Box5";
+            this.Box5.Size = new System.Drawing.Size(133, 28);
+            this.Box5.TabIndex = 10;
+            this.Box5.Text = "소수입니까?";
+            this.Box5.UseVisualStyleBackColor = false;
+            this.Box5.CheckedChanged += new System.EventHandler(this.Box5_CheckedChanged);
+            // 
+            // Box6
+            // 
+            this.Box6.AutoSize = true;
+            this.Box6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box6.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box6.Location = new System.Drawing.Point(915, 245);
+            this.Box6.Name = "Box6";
+            this.Box6.Size = new System.Drawing.Size(203, 28);
+            this.Box6.TabIndex = 11;
+            this.Box6.Text = "3으로 나누어집니까?";
+            this.Box6.UseVisualStyleBackColor = false;
+            this.Box6.CheckedChanged += new System.EventHandler(this.Box6_CheckedChanged);
+            // 
+            // Box7
+            // 
+            this.Box7.AutoSize = true;
+            this.Box7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Box7.Font = new System.Drawing.Font("함초롬돋움", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Box7.Location = new System.Drawing.Point(915, 315);
+            this.Box7.Name = "Box7";
+            this.Box7.Size = new System.Drawing.Size(185, 28);
+            this.Box7.TabIndex = 12;
+            this.Box7.Text = "4로 나누어집니까?";
+            this.Box7.UseVisualStyleBackColor = false;
+            this.Box7.CheckedChanged += new System.EventHandler(this.Box7_CheckedChanged);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(1156, 456);
+            this.Controls.Add(this.Box7);
+            this.Controls.Add(this.Box6);
+            this.Controls.Add(this.Box5);
+            this.Controls.Add(this.Box4);
+            this.Controls.Add(this.Box3);
+            this.Controls.Add(this.Box2);
+            this.Controls.Add(this.Box1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Show_Ans_button);
+            this.Controls.Add(this.RESET);
+            this.Controls.Add(this.Result_button);
+            this.Controls.Add(this.Start_button);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
 }
